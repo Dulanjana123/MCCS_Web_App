@@ -1,0 +1,56 @@
+.add-invoice-billing .edit-modal {
+    height: auto;
+    min-height: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  
+    @media (min-width: 1024px) {
+      height: 560px;
+      min-height: 400px;
+    }
+  
+    @media (min-width: 1366px) {
+      height: auto;
+      min-height: 400px;
+    }
+  }
+  
+  .invoice-pg-scroller {
+    min-height: 200px;
+    height: 200px;
+    width: 99.5%;
+  }
+  
+
+  .added-products-container {
+    border: 1px solid #ccc; /* Example: Adding a 1px solid border around the added products list */
+    padding: 10px; /* Example: Adding padding for better spacing */
+  }
+  
+  .added-products-list ul {
+    list-style-type: none; /* Example: Removing default list styling */
+  }
+  
+  .added-products-list li {
+    padding: 5px 0; /* Example: Adding padding between list items */
+    border-bottom: 1px solid #eee; /* Example: Adding a bottom border between list items */
+  }
+  
+  .high-discount {
+    color: red; /* Example: Highlighting products with a discount in red */
+  }
+  
+  .low-quantity {
+    font-weight: bold; /* Example: Making products with low quantity bold */
+  }
+  
+  .product-qty {
+    margin-right: 10px; /* Example: Adding space between elements */
+  }
+
+  .custom-margin {
+    margin-left: 2px;
+  }
+  
+  /* You can define more styling for other classes like product-name, discount, amount */
+  

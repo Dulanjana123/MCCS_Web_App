@@ -1,0 +1,93 @@
+<div class="container invoice-view">
+  <!-- Main content starts -->
+  <div>
+    <!-- Invoice card start -->
+    <div class="card">
+      <div class="row invoice-contact">
+        <div class="col-md-12">
+          <div class="invoice-box row">
+            <div class="col-sm-12">
+              <table class="table table-responsive invoice-table table-borderless">
+                <caption hidden> </caption>
+                <tbody>
+                  <tr>
+                    <td><img src="assets/images/logo-blue-mc.png" class="m-b-10" alt="Novalab Logo"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body"> 
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12 invoice-client-info">
+            <ng-container>
+              <h6>Customer</h6>
+              <p>
+                <strong>Name :</strong> {{ invoiceModel?.customer?.name }}
+              </p>
+              <p>
+                <strong>Address :</strong> {{ invoiceModel?.customer?.address }}
+              </p>
+            </ng-container>
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12 invoice-maininfor">
+            <ng-container>
+              <h6>Transaction</h6>
+              <p>
+                <strong>Transaction Date :</strong> {{ invoiceModel?.transactionDate | date }}
+              </p>
+              <p>
+                <strong>Invoice No :</strong> {{ invoiceModel?.id }}
+              </p>
+            </ng-container> 
+          </div>
+        </div>
+        <div class="row invoive-info">
+          <div class="col-lg-12">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Amount</th>
+                  <th>Discount Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prod of invoiceModel?.products">
+                  <td>{{ prod.product.name }}</td>
+                  <td>{{ prod.product.description }}</td>
+                  <td>{{ prod.productQty }}</td>
+                  <td>{{ prod.amount }}</td>
+                  <td>{{ prod.discountAmount }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row justify-content-between invoice-total-view light-blue-bg">
+              <div class="col-6 mt-6 invoice-table">
+                <table class="table table-responsive invoice-table invoice-totalamounts">
+                  <caption hidden></caption>
+                  <tbody>
+                    <tr>
+                      <th scope="col">Sub Total</th>
+                      <td>{{ invoiceModel?.totalAmount }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Invoice card end -->
+  </div>
+</div>

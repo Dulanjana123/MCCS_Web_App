@@ -1,0 +1,53 @@
+<form #form="ngForm" id="customerListFrom">
+    <div class="form-group row mt-2">
+      <div class="col-sm-6">
+        <h3>
+          <small class="text-body-secondary"><i class="fa fa-list" aria-hidden="true"></i> Invoice List</small>
+        </h3>
+      </div>
+      <div class="col-sm-2 offset-4">
+        <h3>
+          <button type="button" class="btn btn-outline-danger" routerLink="/invoice"><i class="fa fa-file" aria-hidden="true"></i>  New Invoice</button>
+        </h3>
+      </div>
+    </div>
+    <hr>
+  <div>
+    <div class="row">
+      <div class="col-sm-12" *ngIf="invoiceList.length == 0">
+        <h4><small class="text-body-secondary">No invoices to view...</small></h4>
+      </div>
+        <div class="col-sm-12" *ngIf="invoiceList.length != 0">
+          <table class="table table-bordered table-hover table-primary">
+            <thead>
+              <tr>
+                
+                <th>Customer Name</th>
+                <th>Address</th>
+                <th>Is Active</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let invoice of invoiceList">
+                <td>
+                  {{ invoice?.customer?.name  }}
+                </td>
+                <td>
+                  {{ invoice?.customer?.address }}
+                </td>
+                <td >
+                  {{ invoice?.customer?.isActive}}
+                </td>
+                <td>
+                  <button class="btn btn-info" (click)="toView(invoice?.id)">Invoice</button>
+                </td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+</form>
+

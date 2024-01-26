@@ -1,0 +1,76 @@
+<h2>Invoice</h2>
+<div class="edit-modal">
+  <form #invoiceForm="ngForm" (ngSubmit)="saveInvoice()" autocomplete="off">
+    <div class="row">
+      <div class="col-md-12">
+        <h6 class="pt-2">Customer</h6>
+      </div>
+      <div class="col-md-4 col-lg-2 pr-0">
+        <label for="invoice-date" class="mb-0 col-form-label">Customer</label>
+        <select name="customerId" id="customerId" class="form-control form-control-sm" [(ngModel)]="InvoiceModel.customerId" required="true">
+          <option *ngFor="let customer of customerList" [ngValue]="customer.id">{{customer.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-4 col-lg-2 pr-0">
+        <label for="transaction-date" class="mb-0 col-form-label">Transaction Date</label>
+        <input id="transactionDate" name="transactionDate" type="date" [value]="defaultDate"  class="form-control form-control-sm" [(ngModel)]="InvoiceModel.transactionDate" required>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <h6 class="pt-2">Product</h6>
+      </div>
+
+      <div class="col-md-4 col-lg-2 pr-0">
+        <label for="product-Id" class="mb-0 col-form-label">Purchased Product</label>
+        <select name="productId" id="productId" class="form-control form-control-sm" [(ngModel)]="selectedProduct.productId" required>
+          <option *ngFor="let product of productList" [ngValue]="product.id">{{ product.name }}</option>
+        </select>
+      </div>
+      
+      <div class="col-md-4 col-lg-2 pr-0">
+        <label for="product-qty" class="mb-0 col-form-label">Product Qty</label>
+        <input id="productQty" name="productQty" type="number" placeholder="Product Qty" [(ngModel)]="selectedProduct.productQty" class="form-control form-control-sm" required>
+      </div>
+      
+      <div class="col-md-4 col-lg-2 pr-0">
+        <label for="discount" class="mb-0 col-form-label">Discount</label>
+        <input id="discountAmount" name="discountAmount" type="number" placeholder="Discount" [(ngModel)]="selectedProduct.discountAmount" class="form-control form-control-sm">
+      </div>
+      
+      <div class="col-md-4 col-lg-2 pr-0">
+        <label for="amount" class="mb-0 col-form-label">Amount</label>
+        <input id="amount" name="amount" type="number" placeholder="Amount" [(ngModel)]="selectedProduct.amount" class="form-control form-control-sm" required>
+      </div>
+      
+      <div class="col-md-4 col-lg-2 pr-0 mt-2">
+        <label for="addProduct" class="mb-0 col-form-label">Add Product</label>
+        <button class="btn btn-primary" [disabled]="!isFormValid()" (click)="addProduct()" type="button">Add Product</button>
+      </div>
+      
+      <div *ngIf="InvoiceModel && InvoiceModel.products && InvoiceModel.products.length > 0" class="mt-5 added-products-container">
+        <h4>Added Products:</h4>
+        <div class="added-products-list">
+          <ul>
+            <li *ngFor="let product of InvoiceModel.products" [ngClass]="{'high-discount': product.discountAmount > 0, 'low-quantity': product.productQty < 5}">
+              <span class="product-qty">Product Qty: {{ product.productQty }}</span> |
+              <span class="product-name">Product: {{ getProductById(product.productId)?.name }}</span> |
+              <span class="discount">Discount: {{ product.discountAmount }}</span> |
+              <span class="amount">Amount: {{ product.amount }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group text-center mt-5 mb-2">
+        <button class="btn btn-success me-2 col-sm-2" type="submit" [disabled]="invoiceForm.invalid">Save</button>
+        <button class="btn btn-danger me-2 col-sm-2" type="reset">Cancel</button>
+      </div>
+    </div>
+
+  </form>
+</div>
